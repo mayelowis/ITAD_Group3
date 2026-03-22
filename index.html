@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFit | Innovation in Motion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-primary: #22C55E;
+            --brand-dark: #166534;
+            --brand-light: #DCFCE7;
+            --brand-nav-bg: rgba(220, 252, 231, 0.95);
+            --brand-glow: rgba(34, 197, 94, 0.15);
+            --bg-canvas: #F8FAFC;
+            --text-main: #064E3B;
+            --white: #ffffff;
+            --soft-shadow: 0 10px 30px rgba(34, 197, 94, 0.08);
+        }
+
+        html { scroll-behavior: smooth; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'SF Pro Display', -apple-system, sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-main); line-height: 1.6; }
+
+        header {
+            background: var(--brand-nav-bg);
+            backdrop-filter: blur(12px);
+            height: 85px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 8%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(34, 197, 94, 0.1);
+        }
+
+        .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-img-box { 
+            width: 42px; height: 42px; 
+            background: var(--brand-primary); 
+            border-radius: 10px; 
+            display: flex; align-items: center; justify-content: center; 
+            color: white; 
+            box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3);
+        }
+        .logo-text { font-weight: 800; font-size: 24px; letter-spacing: -1px; color: var(--brand-dark); }
+
+        nav ul { display: flex; list-style: none; gap: 8px; }
+        nav a { 
+            text-decoration: none; 
+            color: var(--brand-dark); 
+            font-size: 14px; 
+            font-weight: 700; 
+            padding: 10px 22px; 
+            border-radius: 50px; 
+            transition: all 0.3s ease; 
+        }
+        nav a:hover { background: var(--brand-primary); color: white; }
+
+        #home { 
+            padding: 80px 8%; 
+            display: grid; 
+            grid-template-columns: 1.1fr 0.9fr; 
+            align-items: center; 
+            min-height: calc(100vh - 85px);
+            background: radial-gradient(circle at top right, var(--brand-light) 0%, var(--bg-canvas) 70%);
+        }
+        .hero-content h1 { font-size: 68px; line-height: 1; margin-bottom: 24px; letter-spacing: -3px; color: var(--brand-dark); }
+        .hero-content h1 span { color: var(--brand-primary); }
+        .hero-content p { font-size: 20px; color: #475569; max-width: 520px; margin-bottom: 35px; }
+        
+        .cta-btn { 
+            padding: 18px 36px; 
+            background: var(--brand-primary); 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 12px; 
+            font-weight: 700; 
+            display: inline-block; 
+            transition: 0.3s; 
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3); 
+        }
+        .cta-btn:hover { background: var(--brand-dark); transform: translateY(-3px); }
+
+        #about { padding: 120px 8%; background: var(--white); }
+        .section-tag { color: var(--brand-primary); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 13px; display: block; margin-bottom: 12px; }
+        .section-title { font-size: 42px; margin-bottom: 60px; letter-spacing: -1.5px; color: var(--brand-dark); }
+        .about-container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-image img { width: 100%; border-radius: 40px; box-shadow: var(--soft-shadow); border: 8px solid var(--brand-light); }
+        
+        .about-text h3 { font-size: 28px; margin-bottom: 15px; color: var(--brand-primary); }
+        .about-text p { font-size: 17px; color: #4b5563; margin-bottom: 25px; }
+
+        #ecosystem { padding: 120px 8%; background: var(--brand-light); }
+        .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .topic-card { background: var(--white); padding: 45px; border-radius: 30px; transition: 0.4s; border-bottom: 4px solid transparent; }
+        .topic-card:hover { transform: translateY(-12px); border-bottom-color: var(--brand-primary); }
+        .icon-box { width: 65px; height: 65px; background: var(--brand-light); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--brand-primary); margin-bottom: 30px; }
+        .topic-card h3 { font-size: 24px; margin-bottom: 20px; color: var(--brand-dark); }
+        .topic-list { list-style: none; }
+        .topic-list li { padding: 12px 0; border-bottom: 1px solid #f1f5f9; font-size: 15px; display: flex; align-items: center; gap: 12px; }
+        .topic-list li i { color: var(--brand-primary); }
+
+        #tools { padding: 120px 8%; background: var(--white); }
+        .tools-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .tool-card { background: var(--bg-canvas); padding: 40px; border-radius: 25px; text-align: center; transition: 0.3s ease; border: 1px solid rgba(34, 197, 94, 0.1); }
+        .tool-card:hover { background: var(--brand-light); transform: scale(1.03); }
+        .tool-card i { font-size: 45px; color: var(--brand-primary); margin-bottom: 20px; }
+        .tool-card h4 { font-size: 22px; color: var(--brand-dark); }
+
+        #contact { padding: 120px 8%; background: var(--bg-canvas); }
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; background: var(--white); padding: 40px; border-radius: 40px; box-shadow: var(--soft-shadow); }
+        .contact-info { background: var(--brand-dark); color: white; padding: 50px; border-radius: 30px; }
+        .contact-info h3 { font-size: 36px; margin-bottom: 20px; color: var(--brand-primary); }
+        .contact-details div { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+        
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; font-weight: 700; margin-bottom: 10px; color: var(--brand-dark); }
+        .form-group input, .form-group textarea { width: 100%; padding: 18px; border: 2px solid #e2e8f0; border-radius: 15px; outline: none; }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--brand-primary); }
+        .submit-btn { width: 100%; padding: 20px; background: var(--brand-primary); color: white; border: none; border-radius: 15px; font-weight: 800; cursor: pointer; }
+
+        footer { background: var(--brand-dark); color: var(--brand-light); padding: 80px 8% 40px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 100px; }
+
+        .go-top-anchor {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 48px;
+            height: 48px;
+            background: var(--brand-primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
+            z-index: 999;
+            transition: 0.3s;
+        }
+        .go-top-anchor:hover { background: var(--brand-dark); transform: translateY(-5px); }
+
+        @media (max-width: 900px) {
+            #home, .about-container, .contact-wrapper, .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-content h1 { font-size: 44px; }
+            header { padding: 0 5%; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#home" class="logo-link">
+            <div class="logo-img-box"><i class="fas fa-bolt"></i></div>
+            <span class="logo-text">TECHFIT</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#ecosystem">Ecosystem</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="hero-content">
+                <span class="section-tag">Innovation in Motion</span>
+                <h1>Smarter Tech, <span>Healthier Life.</span></h1>
+                <p>Empowering students and professionals to integrate fitness technology with sustainable wellness habits.</p>
+                <a href="#ecosystem" class="cta-btn">Explore the Ecosystem <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="hero-image">
+                <div style="width: 100%; max-width: 450px; height: 450px; background: var(--brand-primary); border-radius: 50% 20% 50% 20%; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-heartbeat" style="font-size: 150px; color: white;"></i>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2 class="section-title" style="text-align: center;">Bridging Tech and Vitality</h2>
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=800" alt="Active Lifestyle">
+                </div>
+                <div class="about-text">
+                    <h3>Our Mission</h3>
+                    <p>TechFit aims to combat sedentary modern lifestyles by providing centralized biometric monitoring and AI training.</p>
+                    <h3>Our Vision</h3>
+                    <p>A culture where professionals leverage digital tools for long-term physical sustainability.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ecosystem">
+            <h2 class="section-title" style="text-align: center;">The TechFit Ecosystem</h2>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <div class="icon-box"><i class="fas fa-microchip"></i></div>
+                    <h3>Technology & Fitness</h3>
+                    <ul class="topic-list">
+                        <li><i class="fas fa-check-circle"></i> AI Powered Training</li>
+                        <li><i class="fas fa-check-circle"></i> Smart Gym IoT</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <div class="icon-box"><i class="fas fa-running"></i></div>
+                    <h3>Healthy Habits</h3>
+                    <ul class="topic-list">
+                        <li><i class="fas fa-check-circle"></i> Wearable Integration</li>
+                        <li><i class="fas fa-check-circle"></i> Tracking Apps</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools">
+            <h2 class="section-title" style="text-align: center;">Wellness Tools</h2>
+            <div class="tools-container">
+                <div class="tool-card"><i class="fas fa-calculator"></i><h4>BMI Calculator</h4></div>
+                <div class="tool-card"><i class="fas fa-utensils"></i><h4>Nutrition Planner</h4></div>
+                <div class="tool-card"><i class="fas fa-bed"></i><h4>Sleep Tracker</h4></div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title" style="text-align: center;">Contact TechFit</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Let's Talk!</h3>
+                    <div class="contact-details">
+                        <div><i class="fas fa-envelope"></i> contact@techfit.ue.edu.ph</div>
+                        <div><i class="fas fa-map-marker-alt"></i> CCSS Dept, UE Manila</div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="#">
+                        <div class="form-group"><label>Full Name</label><input type="text" placeholder="Juan Dela Cruz"></div>
+                        <div class="form-group"><label>Email</label><input type="email" placeholder="juan.dc@ue.edu.ph"></div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div><span class="footer-logo">TECHFIT</span></div>
+            <div>
+                <ul style="list-style: none;">
+                    <li><a href="#home" style="color: inherit; text-decoration: none;">Home</a></li>
+                    <li><a href="#about" style="color: inherit; text-decoration: none;">About</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px; opacity: 0.5;">© 2026 TechFit | UE CCSS Manila</div>
+    </footer>
+
+    <a href="#home" class="go-top-anchor" title="Go to top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+</body>
+</html>
